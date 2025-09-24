@@ -11,4 +11,11 @@ RUN echo '<Directory /var/www/html/>\n\
     AllowOverride All\n\
 </Directory>' >> /etc/apache2/apache2.conf
 
+# Copiar todo el proyecto al contenedor
+COPY . /var/www/html/
+
+# Configurar permisos correctos
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
 WORKDIR /var/www/html
