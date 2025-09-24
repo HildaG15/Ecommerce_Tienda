@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tienda_app
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8090:80"
+    depends_on:
+      - db
+
+
+  db:
+    image: mysql:8.0
+    container_name: tienda_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: db_tiendavirtual
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: tienda_user
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+             --sql_mode="STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+
+volumes:
+  dbdata:
