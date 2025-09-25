@@ -8,7 +8,7 @@
     // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
     define("DB_HOST", getenv("DB_HOST") ?: "db");
     define("DB_PORT", getenv("DB_PORT") ?: "3306");
-    define("DB_NAME", getenv("DB_DATABASE") ?: "db_tiendavirtual");
+    define("DB_NAME", getenv("DB_DATABASE") ?: "railway");
     define("DB_USER", getenv("DB_USERNAME") ?: "tienda_user");
     define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "secret");
     define("DB_CHARSET", "utf8mb4");
