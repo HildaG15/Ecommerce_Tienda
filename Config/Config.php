@@ -15,7 +15,7 @@
 
 
     // Para envío de correo
-    const ENVIRONMENT = 1; // Local: 0, Producción: 1;
+    const ENVIRONMENT = 2; 
 
     // Delimitadores decimal y millar
     const SPD = ".";
