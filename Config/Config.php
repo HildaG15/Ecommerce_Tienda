@@ -7,11 +7,11 @@
 
     // Datos de conexión a Base de Datos
     // Usa las variables de entorno que tienes configuradas en Railway
-    define("DB_HOST", getenv("MYSQLHOST") ?: "localhost");
-    define("DB_PORT", getenv("MYSQLPORT") ?: "3306");
+    define("DB_HOST", getenv("MYSQLHOST") ?: "switchback.proxy.rlwy.net");
+    define("DB_PORT", getenv("MYSQLPORT") ?: "38987");
     define("DB_NAME", getenv("MYSQLDATABASE") ?: "railway");
     define("DB_USER", getenv("MYSQLUSER") ?: "root");
-    define("DB_PASSWORD", getenv("MYSQLPASSWORD") ?: "");
+    define("DB_PASSWORD", getenv("MYSQLPASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD");
     define("DB_CHARSET", "utf8mb4");
 
     // Para debugging - eliminar en producción
