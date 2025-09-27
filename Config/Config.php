@@ -5,14 +5,23 @@
     // Zona horaria
     date_default_timezone_set('America/Lima');
 
-        // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
-    define("DB_HOST", getenv("DB_HOST") ?: "switchback.proxy.rlwy.net");
-    define("DB_PORT", getenv("DB_PORT") ?: "38987");
-    define("DB_NAME", getenv("DB_DATABASE") ?: "railway");
-    define("DB_USER", getenv("DB_USERNAME") ?: "root");
-    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD");
+    // Datos de conexión a Base de Datos
+    // Usa las variables de entorno que tienes configuradas en Railway
+    define("DB_HOST", getenv("MYSQLHOST") ?: "localhost");
+    define("DB_PORT", getenv("MYSQLPORT") ?: "3306");
+    define("DB_NAME", getenv("MYSQLDATABASE") ?: "railway");
+    define("DB_USER", getenv("MYSQLUSER") ?: "root");
+    define("DB_PASSWORD", getenv("MYSQLPASSWORD") ?: "");
     define("DB_CHARSET", "utf8mb4");
 
+    // Para debugging - eliminar en producción
+    if (getenv("APP_DEBUG") === "true") {
+        echo "DB_HOST: " . DB_HOST . "<br>";
+        echo "DB_PORT: " . DB_PORT . "<br>";
+        echo "DB_NAME: " . DB_NAME . "<br>";
+        echo "DB_USER: " . DB_USER . "<br>";
+        echo "DB_PASSWORD: " . (DB_PASSWORD ? "***" : "EMPTY") . "<br>";
+    }
 
     // Para envío de correo
     const ENVIRONMENT = 2; 
@@ -29,10 +38,6 @@
     const URLPAYPAL = "https://api-m.sandbox.paypal.com";
     const IDCLIENTE = "";
     const SECRET = "";
-    // LIVE PAYPAL
-    // const URLPAYPAL = "https://api-m.paypal.com";
-    // const IDCLIENTE = "";
-    // const SECRET = "";
 
     // Datos envío de correo
     const NOMBRE_REMITENTE = "Tienda Virtual";
