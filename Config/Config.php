@@ -5,12 +5,12 @@
     // Zona horaria
     date_default_timezone_set('America/Lima');
 
-    // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
-    define("DB_HOST", getenv("DB_HOST") ?: "yamabiko.proxy.rlwy.net");
-    define("DB_PORT", getenv("DB_PORT") ?: "56745");
+        // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
+    define("DB_HOST", getenv("DB_HOST") ?: "yamanote.proxy.rlwy.net");
+    define("DB_PORT", getenv("DB_PORT") ?: "57495");
     define("DB_NAME", getenv("DB_DATABASE") ?: "railway");
     define("DB_USER", getenv("DB_USERNAME") ?: "root");
-    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "aTKVCUFYJvptVAzxPBcRmXrrjeVuAgHF");
+    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "IFwcTesNTKEamSbVMdxKVtskuYDFUWXd");
     define("DB_CHARSET", "utf8mb4");
 
     // Para envío de correo
