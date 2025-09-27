@@ -6,12 +6,13 @@
     date_default_timezone_set('America/Lima');
 
         // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
-    define("DB_HOST", getenv("DB_HOST") ?: "yamanote.proxy.rlwy.net");
-    define("DB_PORT", getenv("DB_PORT") ?: "57495");
+    define("DB_HOST", getenv("DB_HOST") ?: "switchback.proxy.rlwy.net");
+    define("DB_PORT", getenv("DB_PORT") ?: "38987");
     define("DB_NAME", getenv("DB_DATABASE") ?: "railway");
     define("DB_USER", getenv("DB_USERNAME") ?: "root");
-    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "IFwcTesNTKEamSbVMdxKVtskuYDFUWXd");
+    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD");
     define("DB_CHARSET", "utf8mb4");
+
 
     // Para envío de correo
     const ENVIRONMENT = 1; // Local: 0, Producción: 1;
