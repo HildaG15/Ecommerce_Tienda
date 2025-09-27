@@ -15,11 +15,6 @@ RUN echo '<Directory /var/www/html/>\n\
 COPY . /var/www/html/
 
 
-# --- ¡ESTA ES LA LÍNEA MÁS IMPORTANTE! ---
-# Copia el script de inicialización de la base de datos.
-# El contenedor de MySQL lo ejecutará automáticamente al iniciar.
-COPY ./init.sql /docker-entrypoint-initdb.d/
-
 # Configurar permisos correctos
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
