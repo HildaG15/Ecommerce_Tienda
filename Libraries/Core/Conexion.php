@@ -18,9 +18,20 @@ class Conexion{
         }
         
         try{
-            $this->conect = new PDO($connectionString, DB_USER, DB_PASSWORD);
-            $this->conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conect->setAttribute(PDO::ATTR_TIMEOUT, 30);
+            // Opciones específicas para MySQL 8.0 con PHP 7.3
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_TIMEOUT => 30,
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+                PDO::MYSQL_ATTR_SSL_CA => false,
+                // Intentar forzar el método de autenticación legacy
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET SESSION sql_mode=''"
+            ];
+            
+            $this->conect = new PDO($connectionString, DB_USER, DB_PASSWORD, $options);
+            
+            // Ejecutar comando para compatibilidad
+            $this->conect->exec("SET SESSION sql_mode=''");
             
             if (getenv("APP_DEBUG") === "true") {
                 error_log("Conexión exitosa a la base de datos");
