@@ -1,49 +1,42 @@
 <?php
-// Script de prueba de conexión - test_connection.php
-echo "<h2>Prueba de conexión a la base de datos</h2>";
+echo "<h2>Prueba Simple de Conexión</h2>";
 
-// Mostrar variables de entorno
-echo "<h3>Variables de entorno:</h3>";
-echo "MYSQLHOST: " . getenv("MYSQLHOST") . "<br>";
-echo "MYSQLPORT: " . getenv("MYSQLPORT") . "<br>";
-echo "MYSQLDATABASE: " . getenv("MYSQLDATABASE") . "<br>";
-echo "MYSQLUSER: " . getenv("MYSQLUSER") . "<br>";
-echo "MYSQLPASSWORD: " . (getenv("MYSQLPASSWORD") ? "***CONFIGURADO***" : "NO CONFIGURADO") . "<br>";
+// Usando datos directos primero
+$host = "switchback.proxy.rlwy.net";
+$port = "38987";
+$dbname = "railway";
+$user = "root";
+$password = "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD";
 
-// Intentar conexión directa
-$host = getenv("MYSQLHOST") ?: "switchback.proxy.rlwy.net";
-$port = getenv("MYSQLPORT") ?: "38987";
-$dbname = getenv("MYSQLDATABASE") ?: "railway";
-$user = getenv("MYSQLUSER") ?: "root";
-$password = getenv("MYSQLPASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD";
-
-$connectionString = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
-
-echo "<h3>Intentando conexión...</h3>";
-echo "Connection String: $connectionString<br>";
-echo "Usuario: $user<br>";
+echo "Conectando a: $host:$port<br>";
+echo "Base de datos: $dbname<br>";
+echo "Usuario: $user<br><br>";
 
 try {
-    $pdo = new PDO($connectionString, $user, $password, [
+    $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
+    $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
         PDO::ATTR_TIMEOUT => 30
-    ]);
+    ];
     
-    echo "<div style='color: green; font-weight: bold;'>✓ CONEXIÓN EXITOSA</div>";
+    $pdo = new PDO($dsn, $user, $password, $options);
+    echo "<h3 style='color: green;'>✅ CONEXIÓN EXITOSA!</h3>";
     
-    // Probar una consulta simple
-    $stmt = $pdo->query("SELECT 1 as test");
+    // Probar una consulta
+    $stmt = $pdo->query("SELECT 1 as test, NOW() as tiempo");
     $result = $stmt->fetch();
     echo "Consulta de prueba: " . $result['test'] . "<br>";
+    echo "Tiempo del servidor: " . $result['tiempo'] . "<br>";
     
 } catch (PDOException $e) {
-    echo "<div style='color: red; font-weight: bold;'>✗ ERROR DE CONEXIÓN</div>";
+    echo "<h3 style='color: red;'>❌ ERROR DE CONEXIÓN</h3>";
     echo "Mensaje: " . $e->getMessage() . "<br>";
     echo "Código: " . $e->getCode() . "<br>";
 }
 
-// Verificar extensiones PHP
-echo "<h3>Extensiones PHP:</h3>";
-echo "PDO: " . (extension_loaded('pdo') ? "✓ Instalado" : "✗ No instalado") . "<br>";
-echo "PDO MySQL: " . (extension_loaded('pdo_mysql') ? "✓ Instalado" : "✗ No instalado") . "<br>";
+echo "<h3>Info del sistema:</h3>";
+echo "PHP: " . phpversion() . "<br>";
+echo "PDO: " . (extension_loaded('pdo') ? "✅" : "❌") . "<br>";
+echo "PDO MySQL: " . (extension_loaded('pdo_mysql') ? "✅" : "❌") . "<br>";
 ?>
