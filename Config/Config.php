@@ -39,7 +39,7 @@
     const SHAREDHASH = "TiendaVirtual";
 
     // Datos Empresa
-    const DIRECCION = "Avenida las Américas Zona 13, Guatemala";
+    const DIRECCION = "Avenida Ezequiel Gonzales Caceda, Chepén";
     const TELEMPRESA = "+(502)78787845";
     const WHATSAPP = "+51958100331";
     const EMAIL_EMPRESA = "dvasquezrod@unitru.edu.pe";
