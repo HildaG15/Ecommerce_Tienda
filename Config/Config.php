@@ -1,16 +1,16 @@
 <?php 
     // BASE_URL dinámico: Railway o local
-    define("BASE_URL", getenv("APP_URL") ?: "http://localhost:8090");
+    define("BASE_URL", getenv("RAILWAY_PUBLIC_DOMAIN") ? "https://".getenv("RAILWAY_PUBLIC_DOMAIN") : "http://localhost:8090");
 
     // Zona horaria
     date_default_timezone_set('America/Lima');
 
-    // Datos de conexión a Base de Datos (usa getenv o valores por defecto en local)
-    define("DB_HOST", getenv("DB_HOST") ?: "switchback.proxy.rlwy.net");
-    define("DB_PORT", getenv("DB_PORT") ?: "38987");
-    define("DB_NAME", getenv("DB_DATABASE") ?: "railway");
-    define("DB_USER", getenv("DB_USERNAME") ?: "root");
-    define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD");
+    // Datos de conexión a Base de Datos
+    define("DB_HOST", getenv("MYSQLHOST") ?: "switchback.proxy.rlwy.net");
+    define("DB_PORT", getenv("MYSQLPORT") ?: "38987");
+    define("DB_NAME", getenv("MYSQLDATABASE") ?: "railway");
+    define("DB_USER", getenv("MYSQLUSER") ?: "root");
+    define("DB_PASSWORD", getenv("MYSQLPASSWORD") ?: "snaxrNdnVaqWYUTLKmgOzwHHGbEHZrkD");
     define("DB_CHARSET", "utf8mb4");
 
     // Para envío de correo
@@ -28,10 +28,6 @@
     const URLPAYPAL = "https://api-m.sandbox.paypal.com";
     const IDCLIENTE = "";
     const SECRET = "";
-    // LIVE PAYPAL
-    // const URLPAYPAL = "https://api-m.paypal.com";
-    // const IDCLIENTE = "";
-    // const SECRET = "";
 
     // Datos envío de correo
     const NOMBRE_REMITENTE = "Tienda Virtual";
