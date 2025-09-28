@@ -9,21 +9,24 @@
 		public function cantUsuarios(){
 			$sql = "SELECT COUNT(*) as total FROM persona WHERE status != 0";
 			$request = $this->select($sql);
-			$total = $request['total']; 
+			$total = $request && isset($request['total']) ? $request['total'] : 0; 
 			return $total;
 		}
+		
 		public function cantClientes(){
 			$sql = "SELECT COUNT(*) as total FROM persona WHERE status != 0 AND rolid = ".RCLIENTES;
 			$request = $this->select($sql);
-			$total = $request['total']; 
+			$total = $request && isset($request['total']) ? $request['total'] : 0; 
 			return $total;
 		}
+		
 		public function cantProductos(){
 			$sql = "SELECT COUNT(*) as total FROM producto WHERE status != 0 ";
 			$request = $this->select($sql);
-			$total = $request['total']; 
+			$total = $request && isset($request['total']) ? $request['total'] : 0; 
 			return $total;
 		}
+		
 		public function cantPedidos(){
 			$rolid = $_SESSION['userData']['idrol'];
 			$idUser = $_SESSION['userData']['idpersona'];
@@ -34,9 +37,10 @@
 
 			$sql = "SELECT COUNT(*) as total FROM pedido ".$where;
 			$request = $this->select($sql);
-			$total = $request['total']; 
+			$total = $request && isset($request['total']) ? $request['total'] : 0; 
 			return $total;
 		}
+		
 		public function lastOrders(){
 			$rolid = $_SESSION['userData']['idrol'];
 			$idUser = $_SESSION['userData']['idpersona'];
@@ -54,8 +58,8 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}	
+		
 		public function selectPagosMes(int $anio, int $mes){
-
 			$sql = "SELECT p.tipopagoid, tp.tipopago, COUNT(p.tipopagoid) as cantidad, SUM(p.monto) as total 
 					FROM pedido p 
 					INNER JOIN tipopago tp 
@@ -66,6 +70,7 @@
 			$arrData = array('anio' => $anio, 'mes' => $meses[intval($mes-1)], 'tipospago' => $pagos );
 			return $arrData;
 		}
+		
 		public function selectVentasMes(int $anio, int $mes){
 			$rolid = $_SESSION['userData']['idrol'];
 			$idUser = $_SESSION['userData']['idpersona'];
@@ -86,8 +91,20 @@
 						WHERE DATE(fecha) = '$fechaVenta' AND status = 'Completo' ".$where."
 						GROUP BY DATE(fecha)";
 				$ventaDia = $this->select($sql);
-				$ventaDia['dia'] = $n_dia;
-				$ventaDia['total'] = $ventaDia['total'] == "" ? 0 : $ventaDia['total'];
+				
+				// FIX: Verificar si la consulta devolvió resultados
+				if ($ventaDia && isset($ventaDia['total'])) {
+					$ventaDia['dia'] = $n_dia;
+					$ventaDia['total'] = $ventaDia['total'] == "" ? 0 : $ventaDia['total'];
+				} else {
+					// Si no hay resultados, crear array con valores por defecto
+					$ventaDia = array(
+						'dia' => $n_dia,
+						'cantidad' => 0,
+						'total' => 0
+					);
+				}
+				
 				$totalVentasMes += $ventaDia['total'];
 				array_push($arrVentaDias, $ventaDia);
 				$n_dia++;
@@ -96,6 +113,7 @@
 			$arrData = array('anio' => $anio, 'mes' => $meses[intval($mes-1)], 'total' => $totalVentasMes,'ventas' => $arrVentaDias );
 			return $arrData;
 		}
+		
 		public function selectVentasAnio(int $anio){
 			$arrMVentas = array();
 			$arrMeses = Meses();
@@ -127,6 +145,7 @@
 			$arrVentas = array('anio' => $anio, 'meses' => $arrMVentas);
 			return $arrVentas;
 		}
+		
 		public function productosTen(){
 			$sql = "SELECT * 
 					FROM producto 
@@ -136,4 +155,4 @@
 			return $this->select_all($sql);
 		}
 	}
- ?>
+?>
