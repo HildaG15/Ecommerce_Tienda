@@ -31,9 +31,9 @@
 
     // Datos envío de correo
     const NOMBRE_REMITENTE = "Tienda Virtual";
-    const EMAIL_REMITENTE = "felben.tk@gmail.com";
+    const EMAIL_REMITENTE = "dvasquezrod@unitru.edu.pe";
     const NOMBRE_EMPESA = "Tienda Virtual";
-    const WEB_EMPRESA = "www.felixangulonizama.site";
+    const WEB_EMPRESA = "www.tiendavirtual.com";
 
     const DESCRIPCION = "La mejor tienda en línea con artículos de moda.";
     const SHAREDHASH = "TiendaVirtual";
@@ -41,11 +41,11 @@
     // Datos Empresa
     const DIRECCION = "Avenida las Américas Zona 13, Guatemala";
     const TELEMPRESA = "+(502)78787845";
-    const WHATSAPP = "+50278787845";
-    const EMAIL_EMPRESA = "info@felix.com";
-    const EMAIL_PEDIDOS = "info@felix.com"; 
-    const EMAIL_SUSCRIPCION = "info@felix.com";
-    const EMAIL_CONTACTO = "info@felix.com";
+    const WHATSAPP = "+51958100331";
+    const EMAIL_EMPRESA = "dvasquezrod@unitru.edu.pe";
+    const EMAIL_PEDIDOS = "dvasquezrod@unitru.edu.pe"; 
+    const EMAIL_SUSCRIPCION = "dvasquezrod@unitru.edu.pe";
+    const EMAIL_CONTACTO = "dvasquezrod@unitru.edu.pe";
 
     const CAT_SLIDER = "1,2,3";
     const CAT_BANNER = "4,5,6";
